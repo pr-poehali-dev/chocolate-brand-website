@@ -33,97 +33,77 @@ export default function Header({ currentPage, onNavigate }: HeaderProps) {
     <header
       className="fixed top-0 left-0 right-0 z-50 transition-all duration-500"
       style={{
-        background: scrolled
-          ? 'rgba(30, 22, 18, 0.95)'
-          : 'rgba(30, 22, 18, 0.6)',
-        backdropFilter: 'blur(12px)',
-        borderBottom: scrolled ? '1px solid rgba(183, 110, 74, 0.2)' : '1px solid transparent',
+        background: scrolled ? 'rgba(22,15,11,0.97)' : 'rgba(22,15,11,0.6)',
+        backdropFilter: 'blur(14px)',
+        borderBottom: scrolled ? '1px solid rgba(183,110,74,0.25)' : '1px solid transparent',
       }}
     >
       <div className="choco-container">
         <div className="flex items-center justify-between h-16 md:h-20">
-          {/* Logo */}
-          <button
-            onClick={() => handleNav('home')}
-            className="flex items-center gap-3 group"
-          >
+          <button onClick={() => handleNav('home')} className="group flex items-center gap-3">
             <div
-              className="w-9 h-9 flex items-center justify-center rounded-sm transition-all duration-300 group-hover:scale-110"
-              style={{ background: 'var(--copper)', color: 'var(--cocoa)' }}
+              className="w-8 h-8 flex items-center justify-center rounded-sm transition-transform duration-300 group-hover:scale-110"
+              style={{ background: 'var(--copper)' }}
             >
-              <span style={{ fontFamily: 'Cormorant Infant, serif', fontSize: '1.1rem', fontWeight: 600 }}>Ф</span>
+              <span style={{ fontFamily: 'Cormorant Infant, serif', fontSize: '1rem', fontWeight: 700, color: 'var(--cocoa)' }}>Ф</span>
             </div>
-            <div>
-              <div style={{ fontFamily: 'Cormorant Infant, serif', fontSize: '1.15rem', color: 'var(--cream)', lineHeight: 1.1 }}>
-                Философия шоколада
-              </div>
-              <div style={{ fontFamily: 'Raleway, sans-serif', fontSize: '0.6rem', letterSpacing: '0.2em', color: 'var(--copper)', textTransform: 'uppercase' }}>
-                Тула · с 2018 года
-              </div>
+            <div style={{ fontFamily: 'Raleway, sans-serif', fontSize: '0.88rem', fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', lineHeight: 1 }}>
+              <span style={{ color: 'var(--cream)' }}>ФИЛОСОФИЯ </span>
+              <span style={{ color: 'var(--copper)' }}>ШОКОЛАДА</span>
             </div>
           </button>
 
-          {/* Desktop nav */}
           <nav className="hidden md:flex items-center gap-8">
             {navLinks.map((link) => (
               <button
                 key={link.id}
                 onClick={() => handleNav(link.id)}
-                className="relative transition-all duration-300"
+                className="relative pb-1 transition-colors duration-300"
                 style={{
                   fontFamily: 'Raleway, sans-serif',
-                  fontSize: '0.8rem',
+                  fontSize: '0.78rem',
                   fontWeight: 500,
-                  letterSpacing: '0.12em',
+                  letterSpacing: '0.13em',
                   textTransform: 'uppercase',
-                  color: currentPage === link.id ? 'var(--copper)' : 'var(--cream)',
+                  color: currentPage === link.id ? 'var(--copper)' : 'rgba(239,230,217,0.7)',
                 }}
+                onMouseEnter={e => { if (currentPage !== link.id) (e.currentTarget as HTMLButtonElement).style.color = 'var(--cream)'; }}
+                onMouseLeave={e => { if (currentPage !== link.id) (e.currentTarget as HTMLButtonElement).style.color = 'rgba(239,230,217,0.7)'; }}
               >
                 {link.label}
                 {currentPage === link.id && (
-                  <span
-                    className="absolute -bottom-1 left-0 right-0 h-px"
-                    style={{ background: 'var(--copper)' }}
-                  />
+                  <span className="absolute bottom-0 left-0 right-0 h-px" style={{ background: 'var(--copper)' }} />
                 )}
               </button>
             ))}
           </nav>
 
-          {/* Burger */}
           <button
-            className="md:hidden p-2"
+            className="md:hidden p-2 rounded-sm"
             onClick={() => setMenuOpen(!menuOpen)}
-            style={{ color: 'var(--cream)' }}
+            style={{ color: 'var(--cream)', border: '1px solid rgba(183,110,74,0.3)' }}
           >
-            <Icon name={menuOpen ? 'X' : 'Menu'} size={22} />
+            <Icon name={menuOpen ? 'X' : 'Menu'} size={20} />
           </button>
         </div>
       </div>
 
-      {/* Mobile menu */}
       {menuOpen && (
-        <div
-          className="md:hidden"
-          style={{
-            background: 'rgba(30, 22, 18, 0.98)',
-            borderTop: '1px solid rgba(183, 110, 74, 0.2)',
-          }}
-        >
-          <div className="choco-container py-4 flex flex-col gap-1">
+        <div style={{ background: 'rgba(22,15,11,0.99)', borderTop: '1px solid rgba(183,110,74,0.2)' }}>
+          <div className="choco-container py-3 flex flex-col">
             {navLinks.map((link) => (
               <button
                 key={link.id}
                 onClick={() => handleNav(link.id)}
-                className="text-left py-3 px-4 rounded transition-all duration-200"
+                className="text-left py-3.5 border-b"
                 style={{
                   fontFamily: 'Raleway, sans-serif',
-                  fontSize: '0.85rem',
+                  fontSize: '0.82rem',
                   fontWeight: 500,
-                  letterSpacing: '0.1em',
+                  letterSpacing: '0.13em',
                   textTransform: 'uppercase',
-                  color: currentPage === link.id ? 'var(--copper)' : 'var(--cream)',
-                  background: currentPage === link.id ? 'rgba(183, 110, 74, 0.08)' : 'transparent',
+                  color: currentPage === link.id ? 'var(--copper)' : 'rgba(239,230,217,0.7)',
+                  borderColor: 'rgba(183,110,74,0.1)',
                 }}
               >
                 {link.label}

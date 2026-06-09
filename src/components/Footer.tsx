@@ -11,44 +11,39 @@ export default function Footer({ onNavigate }: FooterProps) {
   };
 
   return (
-    <footer style={{ background: '#130e0b', borderTop: '1px solid rgba(183,110,74,0.15)' }}>
+    <footer style={{ background: '#150f0c', borderTop: '1px solid rgba(183,110,74,0.15)' }}>
       <div className="choco-container py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
 
-          {/* Колонка 1 — О компании */}
+          {/* Info */}
           <div>
-            <button onClick={() => handleNav('home')} className="flex items-center gap-2.5 mb-5 group">
+            <div className="flex items-center gap-3 mb-4">
               <div
-                className="w-8 h-8 flex items-center justify-center rounded-sm transition-transform duration-300 group-hover:scale-110"
-                style={{ background: 'var(--copper)' }}
+                className="w-8 h-8 flex items-center justify-center rounded-sm"
+                style={{ background: 'var(--copper)', color: 'var(--cocoa)' }}
               >
-                <span style={{ fontFamily: 'Cormorant Infant, serif', fontSize: '1rem', fontWeight: 700, color: 'var(--cocoa)' }}>Ф</span>
+                <span style={{ fontFamily: 'Cormorant Infant, serif', fontSize: '1rem', fontWeight: 600 }}>Ф</span>
               </div>
-              <div style={{ fontFamily: 'Raleway, sans-serif', fontSize: '0.82rem', fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', lineHeight: 1 }}>
-                <span style={{ color: 'var(--cream)' }}>ФИЛОСОФИЯ </span>
-                <span style={{ color: 'var(--copper)' }}>ШОКОЛАДА</span>
-              </div>
-            </button>
-            <p style={{ fontSize: '0.83rem', color: 'rgba(239,230,217,0.48)', lineHeight: 1.75, marginBottom: '1.5rem' }}>
-              Культурно-гастрономическое пространство в Туле. Ремесленный шоколад, экскурсии и мастер-классы.
+              <span style={{ fontFamily: 'Cormorant Infant, serif', fontSize: '1rem', color: 'var(--cream)' }}>
+                Философия шоколада
+              </span>
+            </div>
+            <p style={{ fontSize: '0.85rem', color: 'rgba(239,230,217,0.55)', lineHeight: 1.7 }}>
+              Пространство, где история тульского шоколада встречается с современным ремесленным искусством.
             </p>
-            <div className="flex items-center gap-2.5">
+            <div className="flex items-center gap-3 mt-5">
               {[
-                { icon: 'MessageSquare', label: 'ВКонтакте' },
+                { icon: 'MessageSquare', label: 'ВК' },
                 { icon: 'BookOpen', label: 'Дзен' },
                 { icon: 'Youtube', label: 'Rutube' },
-              ].map((s, i) => (
+                { icon: 'Users', label: 'ОК' },
+              ].map((s) => (
                 <button
-                  key={i}
-                  className="w-8 h-8 flex items-center justify-center rounded-sm transition-all duration-300"
-                  style={{ border: '1px solid rgba(183,110,74,0.25)', color: 'rgba(239,230,217,0.5)' }}
-                  onMouseEnter={e => {
-                    (e.currentTarget as HTMLButtonElement).style.borderColor = 'var(--copper)';
-                    (e.currentTarget as HTMLButtonElement).style.color = 'var(--copper)';
-                  }}
-                  onMouseLeave={e => {
-                    (e.currentTarget as HTMLButtonElement).style.borderColor = 'rgba(183,110,74,0.25)';
-                    (e.currentTarget as HTMLButtonElement).style.color = 'rgba(239,230,217,0.5)';
+                  key={s.label}
+                  className="w-8 h-8 flex items-center justify-center rounded-sm transition-all duration-300 hover:scale-110"
+                  style={{
+                    border: '1px solid rgba(183,110,74,0.3)',
+                    color: 'var(--copper)',
                   }}
                   title={s.label}
                 >
@@ -58,7 +53,7 @@ export default function Footer({ onNavigate }: FooterProps) {
             </div>
           </div>
 
-          {/* Колонка 2 — Быстрые ссылки */}
+          {/* Links */}
           <div>
             <div className="section-label mb-5">Навигация</div>
             <div className="flex flex-col gap-2.5">
@@ -71,10 +66,10 @@ export default function Footer({ onNavigate }: FooterProps) {
                 <button
                   key={link.id}
                   onClick={() => handleNav(link.id)}
-                  className="text-left transition-colors duration-200 w-fit"
-                  style={{ fontSize: '0.85rem', color: 'rgba(239,230,217,0.5)' }}
-                  onMouseEnter={e => (e.currentTarget as HTMLButtonElement).style.color = 'var(--copper)'}
-                  onMouseLeave={e => (e.currentTarget as HTMLButtonElement).style.color = 'rgba(239,230,217,0.5)'}
+                  className="text-left transition-colors duration-200"
+                  style={{ fontSize: '0.85rem', color: 'rgba(239,230,217,0.55)' }}
+                  onMouseEnter={e => (e.currentTarget.style.color = 'var(--copper)')}
+                  onMouseLeave={e => (e.currentTarget.style.color = 'rgba(239,230,217,0.55)')}
                 >
                   {link.label}
                 </button>
@@ -82,69 +77,59 @@ export default function Footer({ onNavigate }: FooterProps) {
             </div>
           </div>
 
-          {/* Колонка 3 — Контакты */}
+          {/* Contacts */}
           <div>
             <div className="section-label mb-5">Контакты</div>
             <div className="flex flex-col gap-3">
               {[
-                { icon: 'MapPin', text: 'ул. Советская, 15, Тула' },
-                { icon: 'MapPin', text: 'ул. Металлистов, 8, Тула' },
+                { icon: 'MapPin', text: 'Тула, пр. Ленина, 44' },
                 { icon: 'Phone', text: '+7 (4872) 35-00-00' },
-                { icon: 'Phone', text: '+7 (960) 600-00-00' },
                 { icon: 'Mail', text: 'info@filosofiya-shokolada.ru' },
               ].map((item, i) => (
                 <div key={i} className="flex items-start gap-2.5">
-                  <Icon name={item.icon} size={13} style={{ color: 'var(--copper)', marginTop: '3px', flexShrink: 0 }} />
-                  <span style={{ fontSize: '0.83rem', color: 'rgba(239,230,217,0.5)', lineHeight: 1.5 }}>{item.text}</span>
+                  <Icon name={item.icon} size={14} style={{ color: 'var(--copper)', marginTop: '2px', flexShrink: 0 }} />
+                  <span style={{ fontSize: '0.85rem', color: 'rgba(239,230,217,0.55)' }}>{item.text}</span>
                 </div>
               ))}
             </div>
           </div>
 
-          {/* Колонка 4 — Режим работы */}
+          {/* Hours */}
           <div>
-            <div className="section-label mb-5">Режим работы</div>
-            <div className="mb-4">
-              <div style={{ fontSize: '0.75rem', color: 'var(--copper)', marginBottom: '0.6rem', letterSpacing: '0.06em' }}>Советская, 15</div>
+            <div className="section-label mb-5">Часы работы</div>
+            <div className="flex flex-col gap-2.5">
               {[
                 { day: 'Пн — Пт', time: '10:00 — 20:00' },
                 { day: 'Суббота', time: '10:00 — 21:00' },
-                { day: 'Воскресенье', time: '10:00 — 20:00' },
-              ].map((h, i) => (
-                <div key={i} className="flex justify-between mb-1">
-                  <span style={{ fontSize: '0.78rem', color: 'rgba(239,230,217,0.38)' }}>{h.day}</span>
-                  <span style={{ fontSize: '0.78rem', color: 'rgba(239,230,217,0.62)' }}>{h.time}</span>
+                { day: 'Воскресенье', time: '11:00 — 19:00' },
+              ].map((item, i) => (
+                <div key={i} className="flex justify-between items-center">
+                  <span style={{ fontSize: '0.8rem', color: 'rgba(239,230,217,0.45)' }}>{item.day}</span>
+                  <span style={{ fontSize: '0.8rem', color: 'var(--cream)' }}>{item.time}</span>
                 </div>
               ))}
+              <div className="mt-3 pt-3" style={{ borderTop: '1px solid rgba(183,110,74,0.15)' }}>
+                <span
+                  className="inline-flex items-center gap-1.5 text-xs"
+                  style={{ color: '#5a9e5a' }}
+                >
+                  <span className="w-1.5 h-1.5 rounded-full bg-green-500 inline-block" />
+                  Сейчас открыто
+                </span>
+              </div>
             </div>
-            <div className="pt-3" style={{ borderTop: '1px solid rgba(183,110,74,0.12)' }}>
-              <div style={{ fontSize: '0.75rem', color: 'var(--copper)', marginBottom: '0.6rem', letterSpacing: '0.06em' }}>Металлистов, 8</div>
-              {[
-                { day: 'Пятница', time: '14:00 — 20:00' },
-                { day: 'Сб — Вс', time: '11:00 — 20:00' },
-              ].map((h, i) => (
-                <div key={i} className="flex justify-between mb-1">
-                  <span style={{ fontSize: '0.78rem', color: 'rgba(239,230,217,0.38)' }}>{h.day}</span>
-                  <span style={{ fontSize: '0.78rem', color: 'rgba(239,230,217,0.62)' }}>{h.time}</span>
-                </div>
-              ))}
-            </div>
-            <p style={{ fontSize: '0.72rem', color: 'rgba(239,230,217,0.3)', marginTop: '0.75rem', lineHeight: 1.6 }}>
-              * Мастер-классы — по предварительной записи
-            </p>
           </div>
         </div>
 
-        {/* Копирайт */}
         <div
-          className="mt-12 pt-6 flex flex-col md:flex-row items-center justify-between gap-3"
+          className="mt-14 pt-6 flex flex-col md:flex-row items-center justify-between gap-3"
           style={{ borderTop: '1px solid rgba(183,110,74,0.1)' }}
         >
-          <span style={{ fontSize: '0.75rem', color: 'rgba(239,230,217,0.28)' }}>
-            © 2026 «Философия шоколада» — все права защищены.
+          <span style={{ fontSize: '0.75rem', color: 'rgba(239,230,217,0.3)' }}>
+            © 2024 Философия шоколада. Тула, Россия.
           </span>
-          <span style={{ fontSize: '0.75rem', color: 'rgba(239,230,217,0.28)' }}>
-            Ремесленный шоколад ручной работы · Тула
+          <span style={{ fontSize: '0.75rem', color: 'rgba(239,230,217,0.3)' }}>
+            Ремесленный шоколад ручной работы
           </span>
         </div>
       </div>
